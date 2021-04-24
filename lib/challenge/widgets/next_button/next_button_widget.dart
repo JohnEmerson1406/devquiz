@@ -4,7 +4,23 @@ import 'package:google_fonts/google_fonts.dart';
 
 class NextButtonWidget extends StatelessWidget {
   final String label;
-  NextButtonWidget({required this.label});
+  final Color backgroundColor;
+  final Color fontColor;
+  NextButtonWidget({
+    required this.label,
+    required this.backgroundColor,
+    required this.fontColor,
+  });
+
+  NextButtonWidget.green({required String label})
+      : this.backgroundColor = AppColors.green,
+        this.fontColor = AppColors.white,
+        this.label = label;
+
+  NextButtonWidget.white({required String label})
+      : this.backgroundColor = AppColors.white,
+        this.fontColor = AppColors.grey,
+        this.label = label;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +28,7 @@ class NextButtonWidget extends StatelessWidget {
       height: 48,
       child: TextButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            AppColors.darkGreen,
-          ),
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -27,7 +41,7 @@ class NextButtonWidget extends StatelessWidget {
           style: GoogleFonts.notoSans(
             fontWeight: FontWeight.w600,
             fontSize: 15,
-            color: AppColors.white,
+            color: fontColor,
           ),
         ),
       ),
