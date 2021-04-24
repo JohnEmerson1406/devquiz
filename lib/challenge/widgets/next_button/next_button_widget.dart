@@ -13,7 +13,7 @@ class NextButtonWidget extends StatelessWidget {
   });
 
   NextButtonWidget.green({required String label})
-      : this.backgroundColor = AppColors.green,
+      : this.backgroundColor = AppColors.darkGreen,
         this.fontColor = AppColors.white,
         this.label = label;
 
