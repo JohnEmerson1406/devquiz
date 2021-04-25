@@ -70,27 +70,34 @@ class _ChallengePageState extends State<ChallengePage> {
         bottom: true,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: NextButtonWidget.white(
-                  label: 'Pular',
-                  onTap: () {
-                    nextPage();
-                  },
+          child: ValueListenableBuilder<int>(
+            valueListenable: controller.currentPageNotifier,
+            builder: (context, value, _) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: NextButtonWidget.white(
+                    label: 'Pular',
+                    onTap: () {
+                      nextPage();
+                    },
+                  ),
                 ),
-              ),
-              // SizedBox(
-              //   width: 7,
-              // ),
-              // Expanded(
-              //   child: NextButtonWidget.green(
-              //     label: 'Confirmar',
-              //     onTap: () {},
-              //   ),
-              // ),
-            ],
+                if (value == widget.questions.length)
+                  SizedBox(
+                    width: 7,
+                  ),
+                if (value == widget.questions.length)
+                  Expanded(
+                    child: NextButtonWidget.green(
+                      label: 'Confirmar',
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
