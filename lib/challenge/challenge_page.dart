@@ -26,10 +26,11 @@ class _ChallengePageState extends State<ChallengePage> {
   }
 
   void nextPage() {
-    pageController.nextPage(
-      duration: Duration(milliseconds: 100),
-      curve: Curves.linear,
-    );
+    if (controller.currentPage < widget.questions.length)
+      pageController.nextPage(
+        duration: Duration(milliseconds: 100),
+        curve: Curves.linear,
+      );
   }
 
   @override
@@ -75,17 +76,14 @@ class _ChallengePageState extends State<ChallengePage> {
             builder: (context, value, _) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(
-                  child: NextButtonWidget.white(
-                    label: 'Pular',
-                    onTap: () {
-                      nextPage();
-                    },
-                  ),
-                ),
-                if (value == widget.questions.length)
-                  SizedBox(
-                    width: 7,
+                if (value < widget.questions.length)
+                  Expanded(
+                    child: NextButtonWidget.white(
+                      label: 'Pular',
+                      onTap: () {
+                        nextPage();
+                      },
+                    ),
                   ),
                 if (value == widget.questions.length)
                   Expanded(
