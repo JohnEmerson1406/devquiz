@@ -25,6 +25,13 @@ class _ChallengePageState extends State<ChallengePage> {
     super.initState();
   }
 
+  void nextPage() {
+    pageController.nextPage(
+      duration: Duration(milliseconds: 100),
+      curve: Curves.linear,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +60,9 @@ class _ChallengePageState extends State<ChallengePage> {
         children: widget.questions
             .map((e) => QuizWidget(
                   question: e,
+                  onTap: () {
+                    nextPage();
+                  },
                 ))
             .toList(),
       ),
@@ -64,23 +74,22 @@ class _ChallengePageState extends State<ChallengePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                  child: NextButtonWidget.white(
-                label: 'Pular',
-                onTap: () {
-                  pageController.nextPage(
-                    duration: Duration(milliseconds: 100),
-                    curve: Curves.linear,
-                  );
-                },
-              )),
-              SizedBox(
-                width: 7,
+                child: NextButtonWidget.white(
+                  label: 'Pular',
+                  onTap: () {
+                    nextPage();
+                  },
+                ),
               ),
-              Expanded(
-                  child: NextButtonWidget.green(
-                label: 'Confirmar',
-                onTap: () {},
-              )),
+              // SizedBox(
+              //   width: 7,
+              // ),
+              // Expanded(
+              //   child: NextButtonWidget.green(
+              //     label: 'Confirmar',
+              //     onTap: () {},
+              //   ),
+              // ),
             ],
           ),
         ),
