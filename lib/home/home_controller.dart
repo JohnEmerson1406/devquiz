@@ -1,4 +1,3 @@
-import 'package:devquiz/core/core.dart';
 import 'package:devquiz/home/home_repository.dart';
 import 'package:devquiz/home/home_state.dart';
 import 'package:devquiz/shared/models/quiz_model.dart';
